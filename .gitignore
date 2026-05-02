@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+app/notes.txt
+.env
+.vscode/
