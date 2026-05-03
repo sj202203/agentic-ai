@@ -1,7 +1,11 @@
-
 # Agentic AI
 
 Personal experiments with agentic, tool-using AI agents. This repository contains a minimal Python agent that performs simple math via a tool interface and saves conversation notes.
+
+## Files added
+
+- `requirements.txt` — pinned dependencies generated from the repository virtual environment
+- `.gitignore` — ignores local environment and artifacts (e.g., `.venv`, `__pycache__`, `app/notes.txt`)
 
 ## Features
 
@@ -22,7 +26,7 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-2. Install dependencies (create `requirements.txt` if not present):
+2. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -43,22 +47,20 @@ Type `exit` or `quit` to stop the agent.
 
 ## Recommended repository housekeeping
 
-- Add a `.gitignore` containing:
+- The repository already includes a `.gitignore` and `requirements.txt`. Ensure you do not add `.venv` to git history if it was previously committed.
+- Example `.gitignore` entries (already applied):
 
 ```
 .venv/
 __pycache__/
 *.pyc
 app/notes.txt
+.env
+.vscode/
 ```
-
-- Add a `requirements.txt` (use `pip freeze > requirements.txt` from your venv)
-- Add a `LICENSE` file (e.g., MIT) if you want to make this public
 
 ## Contributing
 
 This is a personal project for learning. If you want to collaborate, open an issue or send a pull request describing the change.
 
-## License
 
-Add a license file to indicate how you want others to reuse your work (suggestion: MIT).
