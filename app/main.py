@@ -1,62 +1,37 @@
-from ollama import chat
-import tools
-
-
+from router import router
+from tools import calculator, save_note, read_notes, search_notes
+from memory import log_turn
 
 def run_agent(user_txt: str):
-    messages = [
-        {
-            "role":"system",
-            "content": (
-                "You are an assistant that must use tools for math and note saving. "
-                "Do not answer math directly in text. "
-                "If you need a tool, call the tool given by me."
-            )
-        },{
-            "role":"user",
-            "content": user_txt
-        }
-    ]
+    decision = router(user_txt)
 
-    while True:
-        response = chat(
-            model="qwen3",
-            messages=messages,
-            tools=[tools.calculator, tools.save_note],
-        )
+    tool = decision["tool"]
+    args = decision["args"]
 
-        messages.append(response.message)
+    if tool == "calculator":
+        result = calculator(**args)
+    
+    elif tool == "save_note":
+        result = save_note(**args)
+    
+    elif tool == "read_notes":
+        result = read_notes(**args)
+    
+    elif tool == "search_notes":
+        result = search_notes(**args)
+    
+    else:
+        result = "I do not understand the request."
+    
+    log_turn(user_txt,tool,str(result))
+    return result
 
-        tool_calls = response.message.tool_calls or []
-
-        if not tool_calls:
-            return response.message.content
-
-        # Normal tool-calling path
-        if tool_calls:
-            for call in tool_calls:
-
-                if call.function.name=="calculator":
-                    result=tools.calculator(**call.function.arguments)
-                elif call.function.name == "save_note":
-                    result = tools.save_note(**call.function.arguments)
-                else:
-                    result = "Unknown tool"
-                
-                messages.append(
-                    {
-                        "role":"tool",
-                        "tool_name": call.function.name,
-                        "content": str(result)
-                    }
-                )
- 
 if __name__ == "__main__":
-    print("Type exit to quit")
+    print("Type quit to exit")
 
     while True:
         user_txt = input("\nYou: ").strip()
-        if user_txt.lower() in {"quit","exit"}:
+
+        if user_txt.lower() in ("quit","exit"):
             break
-        
         print("Agent:",run_agent(user_txt))

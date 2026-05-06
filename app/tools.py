@@ -1,5 +1,7 @@
 from datetime import datetime
 
+NOTE_FILE = "notes.txt"
+
 def calculator(a: float, b: float, op: str):
     """Do basic math on two numbers.
 
@@ -28,6 +30,40 @@ def save_note(text: str):
     Args:
         text: Note text
     """
-    with open("notes.txt", "a", encoding = "utf-8") as f:
+    with open(NOTE_FILE, "a", encoding = "utf-8") as f:
         f.write(f"[{datetime.now().isoformat()}] {text}\n")
     return f"Saved Note: {text}"
+
+
+def read_notes(limit: int=5):
+    """Read all notes from notes.txt."""
+    
+    try:
+        with open(NOTE_FILE,"r", encoding="utf-8") as f:
+            lines = f.readlines()
+    except FileNotFoundError:
+        return "No notes found"
+    
+    lines = [line.rstrip("\n") for line in lines if line.strip()]
+
+    if not lines:
+        return "No notes found"
+    
+    return "\n".join(lines[-limit:])
+
+def search_notes(query: str):
+    """Searches all notes from notes.txt"""
+    try:
+        with open(NOTE_FILE,"r",encoding="utf-8") as f:
+            lines=f.readlines()
+    except FileNotFoundError:
+        return "No notes found"
+    
+    query = query.lower().strip()
+    matches = [line.rstrip("\n") for line in lines if query in line.lower()]
+
+    if not matches:
+        return f'No notes found for "{query}".'
+    
+    return "\n".join(matches)
+    
