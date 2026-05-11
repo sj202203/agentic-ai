@@ -3,3 +3,10 @@
 {"time": "2026-05-07T01:00:02.251214", "user_txt": "save the result", "decision": "unknown", "result": "I do not understand the request."}
 {"time": "2026-05-07T01:00:46.751028", "user_txt": "note this down, this app is a personal assistant.", "decision": "save_note", "result": "Saved Note: note this down, this app is a personal assistant."}
 {"time": "2026-05-07T01:16:32.343360", "user_txt": "look up note app", "decision": "search_notes", "result": "[2026-05-07T01:00:46.750908] note this down, this app is a personal assistant."}
+{"time": "2026-05-07T23:39:08.362954", "user_txt": "Hi, please add 4 and 5", "decision": {"tool": "calculator", "args": {"a": 4.0, "b": 5.0, "op": "add"}}, "result": "9.0"}
+{"time": "2026-05-07T23:39:39.787607", "user_txt": "hi, add 3 and 4", "decision": {"tool": "calculator", "args": {"a": 3.0, "b": 4.0, "op": "add"}}, "result": "7.0"}
+{"time": "2026-05-07T23:40:10.456927", "user_txt": "add 5 and 6", "decision": {"tool": "calculator", "args": {"a": 5.0, "b": 6.0, "op": "add"}}, "result": "11.0"}
+{"time": "2026-05-09T01:17:06.062235", "user_txt": "add 5 and 56", "decision": {"tool": "calculator", "args": {"a": 5, "b": 56, "op": "+"}}, "result": "61"}
+{"time": "2026-05-12T01:14:22.528081", "user_txt": "hi, add 34 and 45 and save it in notes.", "decision": "calculator", "result": "79"}
+{"time": "2026-05-12T01:14:22.535949", "user_txt": "hi, add 34 and 45 and save it in notes.", "decision": "save_note", "result": "Saved Note: 34 + 45 = 79"}
+{"time": "2026-05-12T01:16:01.240547", "user_txt": "hi, divide 20 by 9 and save it in notes.", "decision": "calculator", "result": "2.2222222222222223"}

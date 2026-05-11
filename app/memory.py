@@ -3,7 +3,7 @@ from datetime import datetime
 
 MEMORY_FILE="memeory.jsonl"
 
-def log_turn(user_text: str, decision: dict, result: str):
+def log_turn(user_text: str, decision, result: str):
     entry = {
         "time":datetime.now().isoformat(),
         "user_txt": user_text,

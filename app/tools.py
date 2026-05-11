@@ -52,7 +52,13 @@ def read_notes(limit: int=5):
     return "\n".join(lines[-limit:])
 
 def search_notes(query: str):
-    """Searches all notes from notes.txt"""
+    """Searches all notes from notes.txt
+
+    Args: 
+        query: A string
+    
+    """
+    
     try:
         with open(NOTE_FILE,"r",encoding="utf-8") as f:
             lines=f.readlines()
